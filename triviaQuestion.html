@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <style>
+        .headline-class {
+            text-align: center;
+            background: aqua;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 headline-class">
+                Trivia Game!
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-10 question-class-0">
+            </div>
+            <div class="col-md-1 true-class-0">
+            </div>
+            <div class="col-md-1 false-class-0">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-10 question-class-1">
+            </div>
+            <div class="col-md-1 true-class-1">
+            </div>
+            <div class="col-md-1 false-class-1">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-10 question-class-2">
+            </div>
+            <div class="col-md-1 true-class-2">
+            </div>
+            <div class="col-md-1 false-class-2">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-10 question-class-3">
+            </div>
+            <div class="col-md-1 true-class-3">
+            </div>
+            <div class="col-md-1 false-class-3">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-10 question-class-4">
+            </div>
+            <div class="col-md-1 true-class-4">
+            </div>
+            <div class="col-md-1 false-class-4">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-10 question-class-5">
+            </div>
+            <div class="col-md-1 true-class-5">
+            </div>
+            <div class="col-md-1 false-class-5">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-10 question-class-6">
+            </div>
+            <div class="col-md-1 true-class-6">
+            </div>
+            <div class="col-md-1 false-class-6">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-10 question-class-7">
+            </div>
+            <div class="col-md-1 true-class-7">
+            </div>
+            <div class="col-md-1 false-class-7">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-10 question-class-8">
+            </div>
+            <div class="col-md-1 true-class-8">
+            </div>
+            <div class="col-md-1 false-class-8">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-10 question-class-9">
+            </div>
+            <div class="col-md-1 true-class-9">
+            </div>
+            <div class="col-md-1 false-class-9">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3" id="display">00:35</div>
+            <div class="col-md-3">
+                <button id="start">Start</button>
+            </div>
+            <div class="col-md-3">
+                <button id="reset">Reset</button>
+            </div>
+            <div class="col-md-3">
+            </div>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        // write a function to re-arrange each ajax info into an easily accesible array.
+        // function forLooper(){
+        //     for (var i=0;i<10;i++){
+        //         if ()
+        //     }
+        // }
+
+
+        //aJax call to grab all the array of questions correct answers and incorrect answer
+        $.ajax({
+            url: "https://opentdb.com/api.php?amount=10&category=23&difficulty=easy&type=boolean",
+            method: "GET"
+        }).then(function (response) {
+            var iniResponse = response.results;// storing response to console log        
+            console.log(iniResponse);// printed out hte whole array of info from the website.
+            var firstQuestion = response.results[0].question;// we want the question to be stored into a var to be used later
+            console.log(firstQuestion);
+            var firstCorrectAnswer = response.results[0].correct_answer;//we do the same thing for correct answers
+            var firstIncorrectAnswer = response.results[0].incorrect_answers;//and incorrect answers
+
+            // console.log("your response is + " + response.results[0].correct_answer)
+
+            console.log(firstCorrectAnswer);
+            console.log(firstIncorrectAnswer); // why cant we create a for loop to gather all the info
+            //create three empty arrays to store info
+
+
+            // var corAnwerArray = [];
+            // var incAnswerArray = [];   
+
+            //    for (var i=0;i<10;i++){
+
+            //    return corAnswerAray[i] = response.results[i].correct_answer;
+            //   return questionArray[i] = response.results[i].question;
+            //  return incAnswerArray[i] = response.results[i].inc_answers;
+            //    }
+            //    console.log("1"+corAnswerAray[0]);
+            //    console.log("2"+questionArray[0]);
+            //    console.log("3"+incAnswerArray[0]);
+
+            // var questionArray = [];
+            // questionArray[0] = response.results[0].question;
+            // console.log(questionArray[0]);
+            // successfully created a for loop to reassign ajax values into an empty array into new re-usable value
+            var questionArray = [];
+            var corAnswerArray = [];
+            var incAnswerArray = [];
+            for (var i = 0; i < 10; i++) {
+                questionArray[i] = response.results[i].question;
+                corAnswerArray[i] = response.results[i].correct_answer;
+                incAnswerArray[i] = response.results[i].incorrect_answers;
+                // console.log("your question arrays are: " + questionArray[i]);
+            }
+            console.log("your question arrays are: " + questionArray);
+            console.log("your cor arrays are: " + corAnswerArray);
+            console.log("your inc arrays are: " + incAnswerArray);
+
+
+            for (var i = 0; i < 10; i++) {
+
+                $(".question-class-" + i).append("<li>" + questionArray[i] + "</li>");
+                $(".true-class-" + i).append("<p><button>" + corAnswerArray[i] + "</button></p>");
+                $(".false-class-" + i).append("<p><button>" + incAnswerArray[i] + "</button></p>");// add class and attributes
+            }
+            // create a function to where the 
+            console.log(questionArray);
+        });
+        //
+
+
+
+
+        // timer js
+        //  Simple Timer Solution
+        window.onload = function () {
+            $("#lap").on("click", recordLap);
+            $("#stop").on("click", stop);
+            $("#reset").on("click", reset);
+            $("#start").on("click", start);
+        };
+
+        var intervalId;
+        var clockRunning = false;
+        var time = 0;
+        var lap = 1;
+
+        function reset() {
+
+            time = 0;
+            lap = 1;
+
+            $("#display").text("00:35");
+            $("#laps").text("");
+            location.reload(); // added page reload
+        }
+
+
+
+
+        function start() {
+
+            if (!clockRunning) {
+                intervalId = setInterval(count, 1000);
+                clockRunning = true;
+            }
+
+        }
+
+        function stop() {
+
+            clockRunning = false;
+            clearInterval(intervalId);
+
+        }
+
+        function recordLap() {
+
+            var converted = timeConverter(time);
+            $("#laps").append("<p>Lap " + lap + " : " + converted + "</p>");
+            lap++;
+
+        }
+
+        function count() {
+
+            time--;
+            var converted = timeConverter(time);
+            $("#display").text(converted);
+
+        }
+
+        function timeConverter(t) {
+
+            var minutes = Math.floor(t / 60);
+            var seconds = t - (minutes * 60);
+
+            if (seconds < 10) {
+                seconds = "0" + seconds;
+            }
+
+            if (minutes === 0) {
+                minutes = "00";
+            }
+            else if (minutes < 10) {
+                minutes = "0" + minutes;
+            }
+
+            return minutes + ":" + seconds;
+        }
+
+    </script>
+</body>
+
+</html>
