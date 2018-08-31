@@ -117,51 +117,11 @@
         </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script type="text/javascript">
-        // write a function to re-arrange each ajax info into an easily accesible array.
-        // function forLooper(){
-        //     for (var i=0;i<10;i++){
-        //         if ()
-        //     }
-        // }
-
-
-        //aJax call to grab all the array of questions correct answers and incorrect answer
+    <script type="text/javascript">       
         $.ajax({
             url: "https://opentdb.com/api.php?amount=10&category=23&difficulty=easy&type=boolean",
             method: "GET"
-        }).then(function (response) {
-            var iniResponse = response.results;// storing response to console log        
-            console.log(iniResponse);// printed out hte whole array of info from the website.
-            var firstQuestion = response.results[0].question;// we want the question to be stored into a var to be used later
-            console.log(firstQuestion);
-            var firstCorrectAnswer = response.results[0].correct_answer;//we do the same thing for correct answers
-            var firstIncorrectAnswer = response.results[0].incorrect_answers;//and incorrect answers
-
-            // console.log("your response is + " + response.results[0].correct_answer)
-
-            console.log(firstCorrectAnswer);
-            console.log(firstIncorrectAnswer); // why cant we create a for loop to gather all the info
-            //create three empty arrays to store info
-
-
-            // var corAnwerArray = [];
-            // var incAnswerArray = [];   
-
-            //    for (var i=0;i<10;i++){
-
-            //    return corAnswerAray[i] = response.results[i].correct_answer;
-            //   return questionArray[i] = response.results[i].question;
-            //  return incAnswerArray[i] = response.results[i].inc_answers;
-            //    }
-            //    console.log("1"+corAnswerAray[0]);
-            //    console.log("2"+questionArray[0]);
-            //    console.log("3"+incAnswerArray[0]);
-
-            // var questionArray = [];
-            // questionArray[0] = response.results[0].question;
-            // console.log(questionArray[0]);
-            // successfully created a for loop to reassign ajax values into an empty array into new re-usable value
+        }).then(function (response) {              
             var questionArray = [];
             var corAnswerArray = [];
             var incAnswerArray = [];
@@ -169,104 +129,24 @@
                 questionArray[i] = response.results[i].question;
                 corAnswerArray[i] = response.results[i].correct_answer;
                 incAnswerArray[i] = response.results[i].incorrect_answers;
-                // console.log("your question arrays are: " + questionArray[i]);
             }
-            console.log("your question arrays are: " + questionArray);
-            console.log("your cor arrays are: " + corAnswerArray);
-            console.log("your inc arrays are: " + incAnswerArray);
-
-
             for (var i = 0; i < 10; i++) {
-
-                $(".question-class-" + i).append("<li>" + questionArray[i] + "</li>");
-                $(".true-class-" + i).append("<p><button>" + corAnswerArray[i] + "</button></p>");
+                $(".question-class-" + i).append("<li>" + questionArray[i] + "</li>"); 
+                //               
+                var a = $("<button>");
+                a.addClass("true-answers");
+                a.attr("correct-lane", corAnswerArray[i]);
+                a.text(corAnswerArray[i]);
+                a.attr("id","trueAnswer");
+                $(".true-class-"+i).append(a);
+                // $(".true-class-" + i).append("<div><button>" + corAnswerArray[i] + "</button></p>");
                 $(".false-class-" + i).append("<p><button>" + incAnswerArray[i] + "</button></p>");// add class and attributes
-            }
-            // create a function to where the 
-            console.log(questionArray);
+            }             
         });
-        //
-
-
-
-
-        // timer js
-        //  Simple Timer Solution
-        window.onload = function () {
-            $("#lap").on("click", recordLap);
-            $("#stop").on("click", stop);
-            $("#reset").on("click", reset);
-            $("#start").on("click", start);
-        };
-
-        var intervalId;
-        var clockRunning = false;
-        var time = 0;
-        var lap = 1;
-
-        function reset() {
-
-            time = 0;
-            lap = 1;
-
-            $("#display").text("00:35");
-            $("#laps").text("");
-            location.reload(); // added page reload
-        }
-
-
-
-
-        function start() {
-
-            if (!clockRunning) {
-                intervalId = setInterval(count, 1000);
-                clockRunning = true;
-            }
-
-        }
-
-        function stop() {
-
-            clockRunning = false;
-            clearInterval(intervalId);
-
-        }
-
-        function recordLap() {
-
-            var converted = timeConverter(time);
-            $("#laps").append("<p>Lap " + lap + " : " + converted + "</p>");
-            lap++;
-
-        }
-
-        function count() {
-
-            time--;
-            var converted = timeConverter(time);
-            $("#display").text(converted);
-
-        }
-
-        function timeConverter(t) {
-
-            var minutes = Math.floor(t / 60);
-            var seconds = t - (minutes * 60);
-
-            if (seconds < 10) {
-                seconds = "0" + seconds;
-            }
-
-            if (minutes === 0) {
-                minutes = "00";
-            }
-            else if (minutes < 10) {
-                minutes = "0" + minutes;
-            }
-
-            return minutes + ":" + seconds;
-        }
+    // create functions and declare variables        
+    $("#trueAnswer").on("click", function(){
+        console.log("HI!!");
+    });
 
     </script>
 </body>
