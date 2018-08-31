@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<!-- I was not able to finish the homework. I was unable to target the buttons and return its value back.  I can then compare that returned value and write the if else statements to keep track
+    of the score. 
+    I was unable to do the countdown timer as well. -->
 <html lang="en">
 
 <head>
@@ -118,6 +121,8 @@
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript">       
+        
+        
         $.ajax({
             url: "https://opentdb.com/api.php?amount=10&category=23&difficulty=easy&type=boolean",
             method: "GET"
@@ -143,12 +148,16 @@
                 $(".false-class-" + i).append("<p><button>" + incAnswerArray[i] + "</button></p>");// add class and attributes
             }             
         });
-    // create functions and declare variables        
-    $("#trueAnswer").on("click", function(){
-        console.log("HI!!");
-    });
+    // create functions and declare variables    
+  
+   
+    $("<button>").on("click", function(){
+        // console.log("hello!");
+        var numDisplay = $(this).val();
+        console.log(numDisplay);
+     });
 
     </script>
+    
 </body>
-
 </html>
